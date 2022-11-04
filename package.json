@@ -1,0 +1,20 @@
+{
+    "name": "api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon http-server.mjs",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "client": "node ws-client/client.js",
+        "server": "nodemon index.mjs"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "mime-types": "^2.1.35",
+        "sharp": "^0.31.1",
+        "websocket": "^1.0.34"
+    }
+}
