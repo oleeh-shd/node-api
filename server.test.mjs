@@ -3,6 +3,7 @@ import { mkdtemp, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import axios from "axios";
+import { emptyDir } from "fs-extra";
 
 const UUID_REGEX =
     /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/;
@@ -23,9 +24,13 @@ describe("Integration tests", () => {
         });
     });
 
+    afterEach(async () => {
+        await emptyDir(dir);
+    });
+
     afterAll(async () => {
         server.close();
-        rm(dir, { recursive: true, force: true });
+        await rm(dir, { recursive: true, force: true });
     });
 
     test("GET /images", async () => {
